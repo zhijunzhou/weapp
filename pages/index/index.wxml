@@ -1,23 +1,33 @@
-<!--index.wxml-->
-<!-- 备用right: {{(allWidth-winWidth)/2}}px -->
-<view class="show_swiper" style='width: {{winWidth}}px;height: {{winHeight}}px;'>
-  <view class='show_swiper_list'
-        bindtouchstart='swiperTouchstart'
-        bindtouchmove='swiperTouchmove'
-        bindtouchend='swiperTouchend'
-        style='width: {{allWidth}}px;position: relative;left: {{(winWidth-itemWidth)/2}}px;'>
-
-    <block wx:for="{{swiperList}}">
-       <view class='swiper_item' 
-            data-curid="{{curIndex}}" 
-            data-index='{{index}}' 
-            animation="{{curIndex == index? animationToLarge : animationToSmall}}" 
-            style='width: {{itemWidth}}px;height: {{itemWidth*1.4}}px;transform: scale({{curIndex == index ? 1 : scale}});-'>
-
-          {{item}}
-          
+<!-- index.wxml -->
+<view class="show_swiper" style="width: {{winWidth}}px; height: {{winHeight}}px;">
+  <view class="show_swiper_title_list"
+    data-id="title_swiper"
+    style="width: {{allWidth}}px; position: relative; left: {{(winWidth) / 2 - 40}}px;">
+    <block wx:for="{{courses}}" wx:key="{{item}}">
+      <view class="swiper_title_item" 
+        bindtap="swiperJump"
+        data-curid="{{curIndex}}" 
+        data-index="{{index}}"
+        animation="{{curIndex == index? t_Animation_L : t_Animation_R }}"
+        style="transform: scale({{curIndex == index ? 1 : scale}});">
+        <view class="item-category-name">{{item.category_name}}</view>
       </view>
     </block>
-
+  </view>
+  <view class="show_swiper_list" 
+    data-id="card_swiper"
+    bindtouchstart="swiperTouchstart"
+    bindtouchmove="swiperTouchmove" 
+    bindtouchend="swiperTouchend" 
+    style="width: {{allWidth}}px; position: relative; left: {{(winWidth-itemWidth) / 2}}px;">
+    <block wx:for="{{courses}}" wx:key="{{item}}">
+      <view class="swiper_item" 
+        data-curid="{{curIndex}}" 
+        data-index="{{index}}" 
+        animation="{{curIndex == index? animationToLarge : animationToSmall}}" 
+        style="width: {{itemWidth}}px; transform: scale({{curIndex == index ? 1 : scale}});">
+        <image src="{{item.cover_img}}" style="width: {{itemWidth}}px; height: 300rpx;"/>
+      </view>
+    </block>
   </view>
 </view>

@@ -2,18 +2,31 @@
 .show_swiper{
   background-color: #fafafa;
   overflow: hidden;
+  background: url('https://m.zuzuche.com/w/rent_guide/static/images/bg.jpg?123') center center no-repeat;
+  background-size: cover;
 }
-
 .show_swiper_list {
-  height: 270px;
+  padding-top: 30rpx;
+  display: flex;
+}
+.show_swiper_title_list {
+  padding-top: 50rpx;
+  display: flex;
+  box-sizing: content-box;
 }
 .swiper_item {
-  float: left; 
+  height: 980rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 0.3rem 0.2rem 0 rgba(32,50,152,0.5);
 }
-.swiper_item:nth-child(odd){
-  background-color: lightblue;
-  
+.swiper_title_item {
+  font-size: 36rpx;
+  line-height: .42rem;
+  text-align: center;
+  padding: 0 .1rem;
+  width: 152rpx;
 }
-.swiper_item:nth-child(even){
-  background-color: lightgreen;
+.item-category-name {
+  color: #fafafa;
+  width: 152rpx;
 }
