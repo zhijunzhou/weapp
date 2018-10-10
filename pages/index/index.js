@@ -8,6 +8,8 @@ Page({
     winWidth: 0,  //设备宽度；
     winHeight: 0,   //设备高度；
 
+    titleWidth: 0,
+
     itemWidth: 0, //单个轮播图swiper-item的宽度；
     itemHeight: 0,//单个轮播图swiper-item的高度；
 
@@ -25,6 +27,8 @@ Page({
 
     t_Animation_L: '',
     t_Animation_R: '',
+
+    gap: 0,
 
     courses: [
       {
@@ -197,12 +201,32 @@ Page({
 
     let that = this
     let query = wx.createSelectorQuery()
+    let active = wx.createSelectorQuery()
 
-    query.select('.swiper_title_item').boundingClientRect()    
+    active.select('.swiper_title_item_active').boundingClientRect()
+    query.select('.swiper_title_item').boundingClientRect()
     query.exec(function (res) {
       if (Array.isArray(res) && res.length > 0) {
-        let tx = 0 - curIndex * (res[0].width + 15)
-        that.alignTitleCenter(curIndex, tx)
+        let qw = res[0].width
+        that.setData({
+          titleWidth: qw
+        })
+        if (that.data.gap <= 0) {
+          active.exec(function (at) {
+            if (Array.isArray(at) && at.length > 0) {
+              let aw = at[0].width
+              let gap = aw - qw
+              that.setData({
+                gap: gap
+              })
+              let tx = 0 - curIndex * (qw + gap)
+              that.alignTitleCenter(curIndex, tx)
+            }
+          })
+        } else {
+          let tx = 0 - curIndex * (qw + that.data.gap)
+          that.alignTitleCenter(curIndex, tx)
+        }
       }
     })
   },
@@ -323,6 +347,17 @@ Page({
       delay: 0
     })   
 
+    let query = wx.createSelectorQuery()
+    query.select('.swiper_title_item').boundingClientRect()
+
+    query.exec(function (res) {
+      if (Array.isArray(res) && res.length > 0) {
+        let qw = res[0].width
+        that.setData({
+          titleWidth: qw
+        })
+      }
+    })
   },
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()

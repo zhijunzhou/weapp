@@ -2,9 +2,9 @@
 <view class="show_swiper" style="width: {{winWidth}}px; height: {{winHeight}}px;">
   <view class="show_swiper_title_list"
     data-id="title_swiper"
-    style="width: {{allWidth}}px; position: relative; left: {{(winWidth) / 2 - 40}}px;">
+    style="width: {{allWidth}}px; position: relative; left: {{(winWidth - titleWidth) / 2}}px;">
     <block wx:for="{{courses}}" wx:key="{{item}}">
-      <view class="swiper_title_item" 
+      <view class="swiper_title_item {{curIndex == index? 'swiper_title_item_active' : ''}}" 
         bindtap="swiperJump"
         data-curid="{{curIndex}}" 
         data-index="{{index}}"
