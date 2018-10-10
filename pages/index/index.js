@@ -326,5 +326,8 @@ Page({
   },
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh()
+  },
+  onShareAppMessage: function () {
+    // 分享
   }
 })
