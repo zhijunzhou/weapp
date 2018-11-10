@@ -232,12 +232,6 @@ Page({
   },
 
   alignTitleCenter: function (curIndex, tx) {
-    this.animation2 = wx.createAnimation({
-      duration: 500,
-      timingFunction: "ease-out",
-      delay: 0
-    })
-
     this.t_Animation_R(curIndex, tx)
     this.t_Animation_L(curIndex, tx)
   },
@@ -312,15 +306,15 @@ Page({
   },
 
   t_Animation_L: function (curIndex, x) {
-    this.animation2.translateX(x).scale(1).step()
+    this.animation.translateX(x).scale(1).step()
     this.setData({
-      t_Animation_L: this.animation2.export()
+      t_Animation_L: this.animation.export()
     })
   },
   t_Animation_R: function (curIndex, x) {
-    this.animation2.translateX(x).scale(0.8).step()
+    this.animation.translateX(x).scale(0.8).step()
     this.setData({
-      t_Animation_R: this.animation2.export()
+      t_Animation_R: this.animation.export()
     })
   },
 
